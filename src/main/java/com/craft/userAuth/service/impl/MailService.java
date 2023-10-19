@@ -1,5 +1,7 @@
 package com.craft.userAuth.service.impl;
 
+import com.craft.userAuth.constants.Constants;
+import com.craft.userAuth.exception.CustomException;
 import com.craft.userAuth.model.NotificationEmail;
 import com.craft.userAuth.service.IMailService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,8 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import java.text.MessageFormat;
+
 @Service
 @Slf4j
 public class MailService implements IMailService {
@@ -20,9 +24,10 @@ public class MailService implements IMailService {
     @Async
     @Override
     public void sendMail(NotificationEmail notificationEmail) throws Exception {
+
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom("upsccontentmaterials@gmail.com");
+            messageHelper.setFrom(Constants.Email.FROM_MAIL_ID);
             messageHelper.setTo(notificationEmail.getRecipient());
             messageHelper.setSubject(notificationEmail.getSubject());
             messageHelper.setText(notificationEmail.getBody());
@@ -32,7 +37,9 @@ public class MailService implements IMailService {
             log.info("Activation email sent!!");
         } catch (MailException e) {
             log.error("Exception occurred when sending mail", e);
-            throw new Exception("Exception occurred when sending mail to " + notificationEmail.getRecipient(), e);
+            throw new CustomException(MessageFormat.format(Constants.ErrorMessages.EMAIL_SEND_FAILED,
+                    notificationEmail.getRecipient()),
+                    Constants.ErrorCodes.EMAIL_SEND_FAILED_CODE);
         }
     }
 }

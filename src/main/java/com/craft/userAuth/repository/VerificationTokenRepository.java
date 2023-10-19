@@ -1,6 +1,6 @@
 package com.craft.userAuth.repository;
 
-import com.craft.userAuth.model.VerificationToken;
+import com.craft.userAuth.model.entity.VerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
