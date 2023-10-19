@@ -1,5 +1,6 @@
-package com.craft.userAuth.model;
+package com.craft.userAuth.model.entity;
 
+import com.craft.userAuth.model.entity.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,5 +24,4 @@ public class VerificationToken {
     private String token;
     @OneToOne(fetch = LAZY)
     private User user;
-    private Instant expiryDate;
 }

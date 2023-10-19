@@ -1,6 +1,6 @@
 package com.craft.userAuth.repository;
 
-import com.craft.userAuth.model.User;
+import com.craft.userAuth.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

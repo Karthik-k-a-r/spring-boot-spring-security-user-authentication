@@ -14,16 +14,16 @@ import com.craft.userAuth.constants.Constants;
 @NoArgsConstructor
 public class RegisterRequest {
     @Email
-    @NotEmpty(message = Constants.ErrorMessage.EMAIL_REQUIRED)
+    @NotEmpty(message = Constants.ErrorMessages.EMAIL_REQUIRED)
     private String email;
 
-    @NotBlank(message = Constants.ErrorMessage.FIRST_NAME_REQUIRED)
+    @NotBlank(message = Constants.ErrorMessages.FIRST_NAME_REQUIRED)
     private String firstName;
 
     private String lastName;
 
-    @NotBlank(message = Constants.ErrorMessage.PASSWORD_REQUIRED)
-    @Pattern(regexp = Constants.RegExpression.PASSWORD, message = Constants.ErrorMessage.INVALID_PASSWORD)
+    @NotBlank(message = Constants.ErrorMessages.PASSWORD_REQUIRED)
+    @Pattern(regexp = Constants.RegExpression.PASSWORD, message = Constants.ErrorMessages.INVALID_PASSWORD)
     private String password;
 
 }

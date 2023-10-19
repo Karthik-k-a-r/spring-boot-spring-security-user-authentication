@@ -1,4 +1,4 @@
-package com.craft.userAuth.model;
+package com.craft.userAuth.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -33,5 +33,9 @@ public class User {
     private Instant created;
 
     private boolean active;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
 }

@@ -13,10 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginRequest {
     @Email
-    @NotEmpty(message = Constants.ErrorMessage.EMAIL_REQUIRED)
+    @NotEmpty(message = Constants.ErrorMessages.EMAIL_REQUIRED)
     private String email;
 
-    @NotEmpty(message = Constants.ErrorMessage.PASSWORD_REQUIRED)
-    @Pattern(regexp = Constants.RegExpression.PASSWORD, message = Constants.ErrorMessage.INVALID_PASSWORD)
+    @NotEmpty(message = Constants.ErrorMessages.PASSWORD_REQUIRED)
+    @Pattern(regexp = Constants.RegExpression.PASSWORD, message = Constants.ErrorMessages.INVALID_PASSWORD)
     private String password;
 }

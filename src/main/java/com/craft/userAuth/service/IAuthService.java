@@ -1,10 +1,11 @@
 package com.craft.userAuth.service;
 
+//import com.craft.userAuth.dto.AuthenticationResponse;
 import com.craft.userAuth.dto.AuthenticationResponse;
 import com.craft.userAuth.dto.LoginRequest;
 import com.craft.userAuth.dto.PasswordResetRequest;
-import com.craft.userAuth.model.User;
-import com.craft.userAuth.model.VerificationToken;
+import com.craft.userAuth.model.entity.User;
+import com.craft.userAuth.model.entity.VerificationToken;
 
 public interface IAuthService {
 
@@ -14,7 +15,7 @@ public interface IAuthService {
 
     void fetchUserAndEnable(VerificationToken verificationToken);
 
-    String generatePasswordRecoveryCode(User user);
+    String retrievePasswordRecoveryCode(User user);
 
     void resetPassword(PasswordResetRequest passwordResetRequest);
 
