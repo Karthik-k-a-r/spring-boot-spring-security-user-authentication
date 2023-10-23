@@ -25,6 +25,7 @@ public class Constants {
         public static final String INVALID_TOKEN="Token verification failed";
         public static final String USER_NOT_FOUND="User Not found with Email - {0}";
         public static final String ACCOUNT_NOT_VERIFIED="Your account is not verified. Please verify your account";
+        public static final String FORBIDDEN_ERROR="Your token is invalid";
     }
 
     public static class Email{

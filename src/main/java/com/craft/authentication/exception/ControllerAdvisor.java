@@ -143,7 +143,7 @@ public class ControllerAdvisor {
     public ResponseEntity<Object> handleAuthenticationException(AuthenticationException ex, HttpServletResponse response){
 
         List<Error> errors = new ArrayList<>();
-        errors.add(new Error(ex.getMessage(),Constants.ErrorCodes.FORBIDDEN_CODE));
+        errors.add(new Error(Constants.ErrorMessages.FORBIDDEN_ERROR,Constants.ErrorCodes.FORBIDDEN_CODE));
 
         ErrorResponse errorResponse  = ErrorResponse.builder()
                 .errors(errors)
