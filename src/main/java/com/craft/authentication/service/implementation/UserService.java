@@ -18,13 +18,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.MailException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
 import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
+import com.craft.authentication.model.entity.Role;
 
 
 @Service
@@ -36,13 +39,14 @@ public class UserService implements IUserService {
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
     @Override
+    @Transactional(rollbackFor = MailException.class)
     public SuccessResponse register(RegisterRequest registerRequest) throws Exception {
 
         if(userRepository.existsByEmail(registerRequest.getEmail())) {
             throw new CustomException(Constants.ErrorMessages.DUPLICATE_EMAIL,
                     Constants.ErrorCodes.DUPLICATE_EMAIL_CODE);
         }
-        com.craft.authentication.model.entity.Role role=roleRepository.findByName(Roles.USER);
+        Role role=roleRepository.findByName(Roles.USER);
 
         User user = User.builder()
                 .firstName(registerRequest.getFirstName())
