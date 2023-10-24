@@ -323,7 +323,7 @@ class AuthServiceTest {
     }
 
     @Test
-    void testLogin3() throws AuthenticationException {
+    void testLoginDemo() throws AuthenticationException {
         Role role = Role.builder()
                 .id(1L)
                 .name(Roles.USER)

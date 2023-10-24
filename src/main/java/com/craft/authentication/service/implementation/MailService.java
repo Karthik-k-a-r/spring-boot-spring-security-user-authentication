@@ -5,7 +5,6 @@ import com.craft.authentication.exception.CustomException;
 import com.craft.authentication.model.NotificationEmail;
 import com.craft.authentication.service.IMailService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import java.text.MessageFormat;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class MailService implements IMailService {
     private final JavaMailSender mailSender;
@@ -38,9 +36,7 @@ public class MailService implements IMailService {
 
         try {
             mailSender.send(messagePreparator);
-            log.info("Activation email sent!!");
         } catch (MailException e) {
-            log.error("Exception occurred when sending mail", e);
             throw new CustomException(MessageFormat.format(Constants.ErrorMessages.EMAIL_SEND_FAILED,
                     notificationEmail.getRecipient()),
                     Constants.ErrorCodes.EMAIL_SEND_FAILED_CODE);
